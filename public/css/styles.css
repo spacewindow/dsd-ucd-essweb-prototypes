@@ -98,8 +98,3 @@ table.table-fixed {
   table-layout: fixed;
   width: 100%;
 }
-
-.tr-click {
-  cursor: pointer;
-  position: relative;
-}

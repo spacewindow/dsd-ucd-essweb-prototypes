@@ -14,7 +14,36 @@
     <script src="/js/site.js"></script>
     <title>ESSWeb - Activity</title>
   </head>
+
+  <style>
+    #responsive-warning {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      width: 960px;
+      height: 100vh;
+    }
+    @media (max-width: 1200px) {
+      #root {
+        display: none;
+      }
+      #responsive-warning {
+        display: flex;
+      }
+    }
+  </style>
   <body class="bg-light">
     <div id="root"></div>
+    <div id="responsive-warning">
+      <h1 style="text-align:center">
+        Sorry, this prototype currently <br />
+        doesn't work below 1200px width!
+      </h1>
+      <p>
+        Please resize your browser to make it wider, or zoom out (Ctrl + -).
+      </p>
+    </div>
   </body>
 </html>
