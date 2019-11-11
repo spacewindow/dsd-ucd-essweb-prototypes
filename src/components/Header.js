@@ -5,7 +5,10 @@ const Header = props => {
     <header>
       <nav className="navbar navbar-expand-md bg-white">
         <div className="navbar-nav mr-auto">
-          <div className="nav-masthead navbar-nav mr-auto">
+          <div
+            className="nav-masthead navbar-nav"
+            style={{ marginRight: "5rem" }}
+          >
             <a className="navbar-brand col-md-4" href="#">
               <h4 className="masthead-brand">ESSWeb</h4>
             </a>
