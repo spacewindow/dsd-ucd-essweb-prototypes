@@ -1,7 +1,7 @@
 import React from "react";
 
-const Search = props => {
-  return <div>Search</div>;
+const PickerPill = props => {
+  return <div className="badge">PickerPill</div>;
 };
 
-export default Search;
+export default PickerPill;

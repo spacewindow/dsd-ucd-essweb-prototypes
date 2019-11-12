@@ -98,3 +98,35 @@ table.table-fixed {
   table-layout: fixed;
   width: 100%;
 }
+.ds-tags {
+  padding: 0;
+}
+.ds-tags li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 1em;
+}
+
+.ds-picker-pill {
+  display: flex;
+  overflow: hidden;
+}
+
+.ds-picker-pill-name {
+  display: block;
+  background: var(--white);
+}
+
+.ds-picker-pill-type {
+  display: block;
+  background: var(--gray);
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

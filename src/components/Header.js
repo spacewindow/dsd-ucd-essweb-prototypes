@@ -7,24 +7,22 @@ const Header = props => {
         <div className="navbar-nav mr-auto">
           <div
             className="nav-masthead navbar-nav"
-            style={{ marginRight: "5rem" }}
+            style={{ marginRight: "6rem" }}
           >
             <a className="navbar-brand col-md-4" href="#">
-              <h4 className="masthead-brand">ESSWeb</h4>
+              <h4 className="row masthead-brand">ESSWeb</h4>
             </a>
           </div>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent mb-0">
               <li className="breadcrumb-item">
-                <a href="#">Search</a>
+                <a href="#">Activities</a>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">Search results</a>
+                <a href="#">Summary</a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                Client:{" "}
-                <span style={{ textTransform: "uppercase" }}>Satewerawat</span>,
-                Jit
+                1234687: Skills for Work
               </li>
             </ol>
           </nav>

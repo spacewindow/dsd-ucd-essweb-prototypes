@@ -50,23 +50,23 @@ const ContainerFluid = props => {
               <a className="bd-toc-link" href="#">
                 Home
               </a>
-              <ul className="nav bd-sidenav">
+              {/* <ul className="nav bd-sidenav">
                 <li>
                   <a href="#">Dashboard</a>
                 </li>
                 <li>
                   <a href="#">Caseload</a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
             <div className="bd-toc-item active">
               <a className="bd-toc-link" href="#">
-                Activity
+                Activities
               </a>
 
               <ul className="nav bd-sidenav">
                 <li className="active">
-                  <a href="#">Overview</a>
+                  <a href="#">Summary</a>
                 </li>
                 <li>
                   <a href="#">Create</a>

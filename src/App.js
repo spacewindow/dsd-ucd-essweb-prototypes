@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import ActivityDash from "./pages/ActivityDash";
+import "./css/styles.css";
 
 function App() {
   return (
