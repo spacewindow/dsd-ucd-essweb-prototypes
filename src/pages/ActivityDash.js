@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import ContainerFluid from "../components/ContainerFluid";
 import Header from "../components/Header";
 import Picker from "../components/Picker";
@@ -8,6 +8,7 @@ import Persona from "../components/Persona";
 import Drawer from "../components/Drawer";
 
 const ActivityDash = props => {
+  const [showDrawer, setShowDrawer] = useState(false);
   return (
     <Fragment>
       <Header />
@@ -16,6 +17,10 @@ const ActivityDash = props => {
         <PickerPill type="Site" name="TL45" />
         <PickerPill type="Contract" name="DES" />
       </Picker>
+      <Drawer
+        show={showDrawer}
+        closeFunction={() => setShowDrawer(false)}
+      ></Drawer>
       <ContainerFluid>
         <div className="row">
           <div className="col-12">
@@ -23,8 +28,16 @@ const ActivityDash = props => {
               <span>
                 <span className="text-muted">Activity | </span>
                 <span>Skills for Work</span>
+                <span className="small text-muted"> ID: 123456789</span>
               </span>
-              <span className="small">ID: 123456789</span>
+              <button
+                className="btn btn-secondary"
+                onClick={() => {
+                  showDrawer ? setShowDrawer(false) : setShowDrawer(true);
+                }}
+              >
+                View details
+              </button>
             </h1>
           </div>
           <div className="col-8 atv-widgets">
