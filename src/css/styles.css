@@ -53,7 +53,7 @@ der */ .masthead {
   right: -100%;
   overflow: hidden;
   background: white;
-  width: 40%;
+  width: 60%;
   height: 100vh;
   box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2);
   z-index: 9999;
@@ -164,4 +164,12 @@ table.table-fixed {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* .highcharts-credits {
+  display: none;
+} */
+
+.table-column-bold {
+  font-weight: 700;
 }

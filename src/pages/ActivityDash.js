@@ -6,6 +6,9 @@ import PickerPill from "../components/PickerPill";
 import Card from "../components/Card";
 import Persona from "../components/Persona";
 import Drawer from "../components/Drawer";
+import BarChart from "../components/BarChart";
+import ActivityDetails from "./ActivityDetails";
+import Participants from "../components/Participants";
 
 const ActivityDash = props => {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -20,28 +23,69 @@ const ActivityDash = props => {
       <Drawer
         show={showDrawer}
         closeFunction={() => setShowDrawer(false)}
-      ></Drawer>
+        header="Skills for Work | Details"
+      >
+        <ActivityDetails />
+      </Drawer>
       <ContainerFluid>
         <div className="row">
-          <div className="col-12">
-            <h1 className="h2 mb-4 d-flex justify-content-between align-items-center">
+          <div className="col-10">
+            <h1 className="h2 d-flex justify-content-between align-items-center mb-2">
               <span>
                 <span className="text-muted">Activity | </span>
                 <span>Skills for Work</span>
-                <span className="small text-muted"> ID: 123456789</span>
               </span>
-              <button
-                className="btn btn-secondary"
-                onClick={() => {
-                  showDrawer ? setShowDrawer(false) : setShowDrawer(true);
-                }}
-              >
-                View details
-              </button>
             </h1>
+            <p className="text-muted"> ID: 123456789</p>
           </div>
-          <div className="col-8 atv-widgets">
+          <div className="col-2 d-flex justify-content-end align-items-start">
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                showDrawer ? setShowDrawer(false) : setShowDrawer(true);
+              }}
+            >
+              View details
+            </button>
+          </div>
+
+          <div className="col-12">
             <div className="row flex-row flex-wrap">
+              <div className="col-12">
+                <Card>
+                  <div className="row flex-row">
+                    <div className="col-md-3">
+                      <label className="small mt-2">Attendance</label>
+                      <p className="lead text-danger d-flex align-items-center">
+                        <i
+                          className="ms-Icon ms-Icon--SkypeCircleArrow mr-2"
+                          style={{ transform: "rotate(-90deg" }}
+                        ></i>
+                        Low
+                      </p>
+                    </div>
+
+                    <div className="col-md-9">
+                      <p className="small mt-1">4 months remaining</p>
+                      <BarChart />
+                      <div className="row flex-row justify-content-between">
+                        <div className="col-6">
+                          <p className="small mt-1">1/1/2019</p>
+                        </div>
+                        <div className="col-6">
+                          <p className="small mt-1 text-right">30/6/2019</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+              <div className="col-12">
+                <Card>
+                  <h3 className="h4">Participants</h3>
+                  <Participants />
+                </Card>
+              </div>
               <div className="col-6">
                 <Card>Yo</Card>
               </div>
@@ -121,41 +165,6 @@ const ActivityDash = props => {
                 <Card>Hello</Card>
               </div>
             </div>
-          </div>
-          <div className="col-4 atv-contacts">
-            <Card>
-              <h4 className="mb-4">Contacts</h4>
-              <h5 className="mt-5">Sureway Pty Ltd</h5>
-              <p>
-                <small>Provider. ABN 321 456 789</small>
-              </p>
-              <Persona />
-
-              <h5 className="mt-5">TAFE Sutherland</h5>
-              <p>
-                <small>Host Organisation. ABN 654 789 789</small>
-              </p>
-              <table className="table table-borderless table-sm mb-5">
-                <colgroup>
-                  <col className="td-fixed-10"></col>
-                  <col></col>
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <th className="small pl-0">Contact name</th>
-                    <td>RICHARDS, Bob</td>
-                  </tr>
-                  <tr>
-                    <th className="small pl-0">Phone</th>
-                    <td>(07) 1234 4567)</td>
-                  </tr>
-                  <tr>
-                    <th className="small pl-0">Email</th>
-                    <td>bob@tafe.edu.au</td>
-                  </tr>
-                </tbody>
-              </table>
-            </Card>
           </div>
         </div>
       </ContainerFluid>
