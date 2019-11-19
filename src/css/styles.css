@@ -173,3 +173,28 @@ table.table-fixed {
 .table-column-bold {
   font-weight: 700;
 }
+
+th.sorting {
+  position: sticky;
+  top: 0px;
+  background: white;
+  box-shadow: 0 2px 5px -1px rgba(40, 40, 40, 0.05);
+}
+
+/*hide boostrap table footer */
+
+/* [data-test="table-foot"] {
+  display: none;
+} */
+
+.dataTables_length label,
+.dataTables_filter label {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.dataTables_length label select,
+.dataTables_filter label input {
+  margin-left: 1rem;
+  width: 40%;
+}

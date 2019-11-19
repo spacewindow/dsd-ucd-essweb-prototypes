@@ -54,8 +54,11 @@ const ActivityDash = props => {
               <div className="col-12">
                 <Card>
                   <div className="row flex-row">
+                    <div className="col-md-12">
+                      <h3>Attendance</h3>
+                    </div>
                     <div className="col-md-3">
-                      <label className="small mt-2">Attendance</label>
+                      <label className="small mt-2">Status</label>
                       <p className="lead text-danger d-flex align-items-center">
                         <i
                           className="ms-Icon ms-Icon--SkypeCircleArrow mr-2"
@@ -64,15 +67,31 @@ const ActivityDash = props => {
                         Low
                       </p>
                     </div>
+                    <div className="col-md-3">
+                      <label className="small mt-2">
+                        Last Session Attendance
+                      </label>
+                      <p className="lead text-danger d-flex align-items-center">
+                        3 of 10 places
+                      </p>
+                    </div>
 
-                    <div className="col-md-9">
-                      <p className="small mt-1">4 months remaining</p>
+                    <div className="col-md-6">
+                      {/* <label className="small mt-2">Attendance Record</label> */}
                       <BarChart />
                       <div className="row flex-row justify-content-between">
-                        <div className="col-6">
+                        <div className="col-4">
                           <p className="small mt-1">1/1/2019</p>
                         </div>
-                        <div className="col-6">
+                        <div className="col-4">
+                          <p
+                            style={{ textAlign: "center" }}
+                            className="small mt-1"
+                          >
+                            2 months remaining
+                          </p>
+                        </div>
+                        <div className="col-4">
                           <p className="small mt-1 text-right">30/6/2019</p>
                         </div>
                       </div>
@@ -82,7 +101,7 @@ const ActivityDash = props => {
               </div>
               <div className="col-12">
                 <Card>
-                  <h3 className="h4">Participants</h3>
+                  <h3 className="h4 mb-4">Participants</h3>
                   <Participants />
                 </Card>
               </div>

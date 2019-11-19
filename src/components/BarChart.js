@@ -18,7 +18,7 @@ const options = {
         Highcharts.each(this.series[0].points, function(p) {
           if (p.y < 5) {
             p.update({
-              color: "red"
+              color: "#dc3545"
             });
           }
         });
