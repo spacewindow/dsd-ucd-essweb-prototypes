@@ -155,22 +155,20 @@ const ActivityDash = props => {
                     <li
                       className="rounded-pill px-2 py-1 bg-secondary text-white mr-2 small"
                       style={{
-                        paddingBottom: "0.4em",
+                        paddingBottom: "1em",
                         paddingTop: "0.3em",
                         display: "inline-block"
                       }}
-                      style={{ paddingBottom: "1em", display: "inline-block" }}
                     >
                       activity
                     </li>
                     <li
                       className="rounded-pill px-2 py-1 bg-secondary text-white mr-2 small"
                       style={{
-                        paddingBottom: "0.4em",
+                        paddingBottom: "1em",
                         paddingTop: "0.3em",
                         display: "inline-block"
                       }}
-                      style={{ paddingBottom: "1em", display: "inline-block" }}
                     >
                       youth
                     </li>

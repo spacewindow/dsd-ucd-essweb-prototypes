@@ -1,57 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MDBDataTable } from "mdbreact";
 import DemeritsBar from "./DemeritsBar";
-const csv = require("csvtojson");
-
-const tableData = csv().fromFile("../data/participants.csv");
-
-console.log(tableData);
+import Papa from "papaparse";
+import { capitalCase } from "../helpers/helpers";
+const csvFilePath = require("../data/participants.csv");
 
 const DatatablePage = () => {
-  const data = {
-    columns: [
-      {
-        field: "name",
-        label: "Name",
-        sort: "asc"
-      },
-      {
-        field: "location",
-        label: "Location",
-        sort: "asc"
-      },
-      {
-        field: "priority",
-        label: "Priority",
-        sort: "asc"
-      },
-      {
-        field: "risk",
-        label: "Risk",
-        sort: "asc"
-      },
-      {
-        field: "notified",
-        label: "Notified",
-        sort: "asc"
-      },
-      {
-        field: "demerits",
-        label: "Demerits",
-        sort: "asc"
-      }
-    ],
-    rows: [
-      {
-        name: "123456",
-        location: "Hello",
-        priority: 1,
-        risk: "Compliance",
-        notified: "Yes",
-        demerits: <DemeritsBar value={3} />
-      }
-    ]
-  };
+  let rows, columns, data;
+
+  Papa.parse(csvFilePath, {
+    download: true,
+    header: true, // will format it as an object now :)
+    complete: function(results) {
+      rows = results.data;
+      columns = Object.keys(rows[0]).map(name => {
+        return {
+          field: name,
+          label: capitalCase(name),
+          sort: "asc"
+        };
+      });
+      console.log(rows);
+      data = {
+        columns: columns,
+        rows: rows
+      };
+    }
+  });
 
   return <MDBDataTable bordered sortable data={data} noBottomColumns />;
 };

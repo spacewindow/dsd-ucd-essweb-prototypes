@@ -14,7 +14,7 @@ const ContainerFluid = props => {
               id="search-input"
               placeholder="Search..."
               aria-label="Search for..."
-              autocomplete="off"
+              autoComplete="off"
               data-docs-version="4.3"
             />
             <button
@@ -37,9 +37,9 @@ const ContainerFluid = props => {
                 <title>Menu</title>
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-miterlimit="10"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeMiterlimit="10"
+                  strokeWidth="2"
                   d="M4 7h22M4 15h22M4 23h22"
                 />
               </svg>
