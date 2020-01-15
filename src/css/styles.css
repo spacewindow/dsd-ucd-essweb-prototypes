@@ -1,6 +1,12 @@
+@font-face {
+  font-family: "Segoe MDL2 Assets";
+  src: url("http://robthwaites.com/fonts/segmdl2.woff") format("woff");
+}
+
 .lead {
   color: black;
   font-weight: 400;
+  font-family: "Segoe MDL2 Assets";
 }
 
 der */ .masthead {

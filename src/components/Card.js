@@ -2,7 +2,10 @@ import React from "react";
 
 const Card = props => {
   return (
-    <div className="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white">
+    <div
+      className="row no-gutters border rounded  flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white"
+      style={props.style}
+    >
       <div className="col p-4 position-static">{props.children}</div>
     </div>
   );

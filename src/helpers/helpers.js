@@ -27,3 +27,27 @@ export const csvToJson = (csvFilePath, setState) => {
     }
   });
 };
+
+// dashPOC: make sure dependencies below are defined in React component to execute dashPOC function there
+
+const $ = window.jQuery;
+const dtrum = window.dtrum;
+const widgets = require("../data/widgets");
+
+//
+
+export const dashPOC = () => {
+  widgets.map(dataZuValue => {
+    const name = dataZuValue.split("/").pop();
+    $("[data-zu='" + dataZuValue + "']").click(function() {
+      var action = dtrum.enterAction(
+        "Widget Click - " + name,
+        "click",
+        null,
+        null,
+        "ESSWeb Dashboard"
+      );
+      dtrum.leaveAction(action);
+    });
+  });
+};

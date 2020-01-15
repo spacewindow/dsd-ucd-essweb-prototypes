@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import ContainerFluid from "../components/ContainerFluid";
 import Header from "../components/Header";
 import Picker from "../components/Picker";
@@ -9,9 +9,18 @@ import Drawer from "../components/Drawer";
 import BarChart from "../components/BarChart";
 import ActivityDetails from "./ActivityDetails";
 import Participants from "../components/Participants";
+const dtrum = window.dtrum;
 
 const ActivityDash = props => {
   const [showDrawer, setShowDrawer] = useState(false);
+
+  const drawerClick = () => {
+    console.log("showDrawer", showDrawer);
+    setShowDrawer(!showDrawer);
+    var action = dtrum.enterAction("Drawer Click", "click", null, "info");
+    dtrum.leaveAction(action);
+  };
+
   return (
     <Fragment>
       <Header />
@@ -22,7 +31,7 @@ const ActivityDash = props => {
       </Picker>
       <Drawer
         show={showDrawer}
-        closeFunction={() => setShowDrawer(false)}
+        closeFunction={drawerClick}
         header="Skills for Work | Details"
       >
         <ActivityDetails />
@@ -39,12 +48,7 @@ const ActivityDash = props => {
             <p className="text-muted"> ID: 123456789</p>
           </div>
           <div className="col-2 d-flex justify-content-end align-items-start">
-            <button
-              className="btn btn-secondary"
-              onClick={() => {
-                showDrawer ? setShowDrawer(false) : setShowDrawer(true);
-              }}
-            >
+            <button className="btn btn-secondary" onClick={drawerClick}>
               View details
             </button>
           </div>

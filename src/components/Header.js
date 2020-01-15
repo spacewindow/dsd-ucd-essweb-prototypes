@@ -16,13 +16,13 @@ const Header = props => {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb bg-transparent mb-0">
               <li className="breadcrumb-item">
-                <a href="#">Activities</a>
+                <a href="#">Level 1</a>
               </li>
               <li className="breadcrumb-item">
-                <a href="#">Summary</a>
+                <a href="#">Level 2</a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                1234687: Skills for Work
+                Current Page
               </li>
             </ol>
           </nav>

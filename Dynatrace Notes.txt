@@ -1,0 +1,21 @@
+
+
+SELECT count(distinct userId), useraction.name from usersession where useraction.application in ("EMP - ESSWeb") and useraction.type STARTSWITH 'ess-dashboard-click' 
+
+
+SELECT count(distinct userId) FROM usersession where useraction.application IN ("UCD Team")
+
+SELECT count(*), useraction.name from useraction where useraction.name startswith "widget loaded - wage" GROUP BY useraction.name 
+
+
+SELECT count(distinct userId), useraction.name from usersession where useraction.application in ("UCD Team") and useraction.name startswith 'widget loaded - diarycheckinfetchcontent ' OR useraction.name startswith 'click on "diarycheckinfetchcontent' GROUP BY useraction.name
+
+SELECT count(*), useraction.name from usersession where useraction.application in ("UCD Team") and useraction.name startswith 'widget loaded - diarycheckinfetchcontent ' OR useraction.name startswith 'click on "diarycheckinfetchcontent' GROUP BY useraction.name
+
+SELECT count(distinct userId) from usersession where useraction.application in ("EMP - ESSWeb") and useraction.name startswith 'Loading of page /ESSWEB/[Contract]/[Organisation]/[Site]/Dashboard/DashboardMain'
+
+SELECT count(distinct userId) from usersession where useraction.application in ("EMP - ESSWeb") and useraction.name startswith 'Loading of page /ESSWEB/[Contract]/[Organisation]/[Site]/Dashboard/ProviderDashboardDiaryWidget/EditCheckinRowModal'
+
+SELECT count(distinct userId) from usersession where useraction.application in ("EMP - ESSWeb") and useraction.name is 'Loading of page /ESSWEB/[Contract]/[Organisation]/[Site]/Calendar/Appointment/Result/[id]'
+
+
