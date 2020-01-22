@@ -13,22 +13,24 @@ const Dashboard = props => {
   const [showDrawer, setShowDrawer] = useState(false);
 
   useEffect(() => {
-    // page loaded
-    dtrum.identifyUser("User3");
-    var pageLoad = dtrum.enterAction(
-      "Dash Page load",
-      "load",
-      null,
-      null,
-      "ESSWeb Dashboard"
-    );
-    window.onbeforeunload = function(event) {
-      dtrum.leaveAction(pageLoad);
-      dtrum.endSession();
-    };
-
-    dashPOC();
-  }, []);
+    if(dtrum){
+      // page loaded
+      dtrum.identifyUser("User3");
+      var pageLoad = dtrum.enterAction(
+        "Dash Page load",
+        "load",
+        null,
+        null,
+        "ESSWeb Dashboard"
+      );
+      window.onbeforeunload = function(event) {
+        dtrum.leaveAction(pageLoad);
+        dtrum.endSession();
+      };
+  
+      dashPOC();
+    }
+    }, []);
 
   const drawerClick = () => {
     // console.log("showDrawer", showDrawer);

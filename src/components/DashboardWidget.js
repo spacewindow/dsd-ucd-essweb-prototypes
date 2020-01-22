@@ -5,15 +5,17 @@ const dtrum = window.dtrum;
 const DashboardWidget = props => {
   const name = props.dataZu.split("/").pop();
   useEffect(() => {
-    // page loaded
-    var widgetLoad = dtrum.enterAction(
-      "Widget loaded - " + name,
-      "load",
-      null,
-      "ESS Dashboard"
-    );
-    dtrum.leaveAction(widgetLoad);
-  }, []);
+    if(dtrum){
+      // page loaded
+      var widgetLoad = dtrum.enterAction(
+        "Widget loaded - " + name,
+        "load",
+        null,
+        "ESS Dashboard"
+      );
+      dtrum.leaveAction(widgetLoad);
+    }
+    }, []);
 
   return (
     <div data-zu={props.dataZu} className="col-4 widget">
