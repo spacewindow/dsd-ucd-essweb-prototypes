@@ -1,0 +1,46 @@
+var ESSWEB_DASHBOARD_DYNATRACE = function() {
+  // Widgets
+
+  var widgets = $(".panel-body[data-zwc*='Widgets']").each(function() {
+    var widgetName = $(this)
+      .prev()
+      .children("h2")
+      .text();
+    console.log(widgetName);
+
+    // send load event
+
+    var loadAction = dtrum.enterAction("Loaded " + widgetName, "custom");
+    dtrum.leaveAction(loadAction);
+
+    // place click tracker
+    $(this).click(function() {
+      var clickAction = dtrum.enterAction("Clicked " + widgetName, "custom");
+      dtrum.leaveAction(clickAction);
+      console.warn("Dynatrace click event: " + widgetName);
+    });
+  });
+
+  // Stat boxes
+
+  var stats = $("#InnerContainerFor-HeaderTiles .widget-stats").each(
+    function() {
+      var widgetName = $(this)
+        .children(".stats-title")
+        .text();
+      console.log(widgetName);
+
+      // send load event
+
+      var loadAction = dtrum.enterAction("Loaded " + widgetName, "custom");
+      dtrum.leaveAction(loadAction);
+
+      // place click tracker
+      $(this).click(function() {
+        var clickAction = dtrum.enterAction("Clicked " + widgetName, "custom");
+        dtrum.leaveAction(clickAction);
+        console.warn("Dynatrace click event: " + widgetName);
+      });
+    }
+  );
+};

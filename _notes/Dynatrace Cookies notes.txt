@@ -1,0 +1,16 @@
+https://ecsn.idc.hosts.testfixnetwork/TESTFIX/ESSWEB/rb_a54fd809-825f-489b-8235-93b7b086f055?type=js&session=-9%24RUV513UUJV1TECMNQAL163IN11R82MD4&svrid=-9&flavor=post&referer=https%3A%2F%2Fecsn.idc.hosts.testfixnetwork%2FTESTFIX%2FESSWEB%2FEPS5%2FNTHN%2FGC70%2FDashboard%2FDashboardMain&visitID=VSTMHFTETXJVIKQRAPSFPCSOGEVNFMKC&modifiedSince=1579659427965&app=a17d1abe65a510ee&end=1
+
+
+Visitor?
+15796550953689QLOFCJJ6G25865ABHGIUD1Q0RLP5UTC
+
+Visit ID? everything after the 'v' so VSTMHFTETXJVIKQRAPSFPCSOGEVNFMKC
+-9$464929845_691h-vVSTMHFTETXJVIKQRAPSFPCSOGEVNFMKC
+
+Different from Session in URL?
+-9$RUV513UUJV1TECMNQAL163IN11R82MD4
+
+
+Network tab actually has all this detailed out
+
+

@@ -1,0 +1,39 @@
+Job Seeker ID
+Surname
+Given Name
+Date of Birth
+Next Provider Appointment
+Allowance Type
+Job Plan Status
+Job Plan Date
+Contact Number
+Job Seeker Tags
+Age
+Client Group
+Client Note
+Commencement Date
+Contract Type
+Early School Leaver
+Exit Date
+Group By
+Job Search
+Managed By
+NEIS Referred
+Outcome
+Period Of Service (weeks)
+Phase
+Placement Status
+Postcode
+Priority
+Referral Date
+Seasonal Work Eligibility
+Specialist Type
+Stream
+Subcontractor
+Suburb
+Suspension Reason
+Time in Program (weeks)
+Time with Provider (weeks)
+Time with Site (weeks)
+Outstanding non-compliance event
+Demerit/ Penalty Count
