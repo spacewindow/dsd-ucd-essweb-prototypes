@@ -57,7 +57,7 @@ const JSCI = props => {
         <div className="row">
           <div className="col-8">
             <h1 className="h2 d-flex justify-content-between align-items-center mb-2">
-              <span><abbr title="Job Seeker Capacity Instrument">JSCI</abbr></span>
+              <span>Job Seeker Capacity Instrument (JSCI)</span>
             </h1>
             <Formik
               initialValues={{

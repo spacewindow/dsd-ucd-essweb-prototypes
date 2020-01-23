@@ -10,7 +10,7 @@ export const MyTextField = ({ label, ...props }) => {
                 {label}
             </label>
             <input id={field.name} className="form-control" {...field} {...props} />
-            {meta.touched && meta.error ? (
+            {meta.error && meta.touched && meta.error ? (
                 <div className='error'>{meta.error}</div>
             ) : null}
         </div>
@@ -19,7 +19,7 @@ export const MyTextField = ({ label, ...props }) => {
 
 export const MySelect = ({ label, ...props }) => {
     const [field, meta, helpers] = useField(props);
-    // const { value } = meta;
+
     const { setValue } = helpers;
     return (
         <div className="form-group">
@@ -37,7 +37,7 @@ export const MySelect = ({ label, ...props }) => {
                 }}
                 onBlur={field.onBlur}
             />
-            {meta.touched && meta.error ? (
+            {meta.error && meta.touched && meta.error ? (
                 <div className='error'>{meta.error}</div>
             ) : null}
         </div>
