@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Dashboard2 from "./pages/Dashboard2";
@@ -18,7 +18,7 @@ function App() {
         path="/participants"
         render={props => <Participants {...props} />}
       />
-      <Route path="/" render={props => <JSCI {...props} />} />
+      <Route path="/" render={props => <ActivityDash {...props} />} />
     </Switch>
   );
 }

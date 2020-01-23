@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ContainerFluid from "../components/ContainerFluid";
 import Header from "../components/Header";
 import Picker from "../components/Picker";
@@ -9,10 +9,23 @@ import Drawer from "../components/Drawer";
 import BarChart from "../components/BarChart";
 import ActivityDetails from "./ActivityDetails";
 import Participants from "../components/Participants";
-import { Formik } from 'formik';
 import axios from 'axios';
+import { Formik, useField } from 'formik';
+import * as Yup from 'yup';
+import { MyTextField, MySelect } from '../components/FormFields';
 const dtrum = window.dtrum;
 const $ = window.$;
+
+// console.log(Yup);
+
+const mySchema = Yup.object().shape({
+  WORK_TWOYEARS: Yup.string().required('Required'),
+  password: Yup.string().required('Required')
+});
+
+console.log(mySchema);
+
+
 
 const JSCI = props => {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -27,7 +40,7 @@ const JSCI = props => {
   };
 
   return (
-    <Fragment>
+    <>
       <Header />
       <Picker>
         <PickerPill type="Org" name="BBXY" />
@@ -47,57 +60,55 @@ const JSCI = props => {
               <span><abbr title="Job Seeker Capacity Instrument">JSCI</abbr></span>
             </h1>
             <Formik
-              initialValues={{ email: '', password: '' }}
-              validate={values => {
-                const errors = {};
-                if (!values.email) {
-                  errors.email = 'Required';
-                } else if (
-                  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                  errors.email = 'Invalid email address';
-                }
-                return errors;
+              initialValues={{
+                // WORK_TWOYEARS: "Paid work"
               }}
+              validationSchema={mySchema}
               onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  axios.post('http://localhost:4000/users/', values);
+                  alert("Yo " + JSON.stringify(values, null, 2));
+                  // axios.post('http://localhost:4000/users/', values);
 
                 }, 400);
               }}
             >
               {({
                 values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
                 handleSubmit,
                 isSubmitting,
+                errors,
+                touched
                 /* and other goodies */
               }) => (
                   <form onSubmit={handleSubmit}>
-                    <input
-                      type="email"
-                      name="email"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.email}
+                    <MySelect
+                      label="What have you MOSTLY been doing in the LAST TWO YEARS?"
+                      name="WORK_TWOYEARS"
+                      options={
+                        [
+                          { label: "Select a response...", value: "" },
+                          { label: "Paid work", value: "Paid work" },
+                          { label: "Working while in prison or other detention", value: "Working while in prison or other detention" },
+                          { label: "Unpaid work (includes volunteering)", value: "Unpaid work (includes volunteering)" },
+                          { label: "Unemployed (ie not working but looking for work)", value: "Unemployed (ie not working but looking for work)" },
+                          { label: "Community Development Employment Projects (CDEP)", value: "Community Development Employment Projects (CDEP)" },
+                          { label: "Studying part-time", value: "Studying part-time" },
+                          { label: "Studying full-time", value: "Studying full-time" },
+                          { label: "Caring", value: "Caring" },
+                          { label: "Parenting", value: "Parenting" },
+                          { label: "NOT working and NOT looking for work", value: "NOT working and NOT looking for work" }
+                        ]
+                      }
                     />
-                    {errors.email && touched.email && errors.email}
-                    <input
-                      type="password"
+                    <MyTextField
                       name="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
+                      label="password"
                     />
-                    {errors.password && touched.password && errors.password}
                     <button type="submit" disabled={isSubmitting}>
                       Submit
           </button>
                     <pre>{JSON.stringify(values, null, 2)}</pre>
+                    <pre>{JSON.stringify(errors, null, 2)}</pre>
                   </form>
                 )}
             </Formik>
@@ -139,7 +150,7 @@ const JSCI = props => {
           </div>
         </div>
       </ContainerFluid>
-    </Fragment>
+    </>
   );
 };
 
