@@ -10,6 +10,7 @@ import BarChart from "../components/BarChart";
 import ActivityDetails from "./ActivityDetails";
 import Participants from "../components/Participants";
 const dtrum = window.dtrum;
+const $ = window.$;
 
 const ActivityDash = props => {
   const [showDrawer, setShowDrawer] = useState(false);

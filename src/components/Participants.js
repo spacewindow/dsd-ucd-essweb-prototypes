@@ -5,6 +5,7 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import DemeritsBar from "./DemeritsBar";
 import { capitalCase, csvToJson } from "../helpers/helpers";
 const csvFilePath = require("../data/participants.csv");
+const $ = window.$;
 
 const DatatablePage = () => {
   const [data, setData] = useState({
@@ -15,9 +16,12 @@ const DatatablePage = () => {
     rows: []
   });
 
-
+  // hack for custom checkboxes
   useEffect(() => {
     csvToJson(csvFilePath, setData);
+    setTimeout(function () {
+      $("input[type='checkbox']").after("<label />");
+    }, 100)
   }, []);
 
   const selectRow = {
