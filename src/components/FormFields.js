@@ -21,6 +21,7 @@ export const MySelect = ({ label, ...props }) => {
     const [field, meta, helpers] = useField(props);
 
     const { setValue } = helpers;
+    console.log("SELECT VALUE", field.value)
     return (
         <div className="form-group">
             <label htmlFor={props.name}>

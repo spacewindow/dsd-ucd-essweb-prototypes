@@ -16,6 +16,7 @@ import { MyTextField, MySelect } from '../components/FormFields';
 const dtrum = window.dtrum;
 const $ = window.$;
 
+
 // console.log(Yup);
 
 const mySchema = Yup.object().shape({
@@ -25,11 +26,15 @@ const mySchema = Yup.object().shape({
 
 console.log(mySchema);
 
-
-
 const JSCI = props => {
   const [showDrawer, setShowDrawer] = useState(false);
+  const [initValues, setInitValues] = useState({});
 
+  useEffect(() => {
+    const initValues = axios.get("http://localhost:4000/jsci").then(response => {
+      setInitValues(response.data.values);
+    });
+  }, []);
   // $('body').scrollspy({ target: '#navbar-example3' })
 
   const drawerClick = () => {
@@ -60,9 +65,8 @@ const JSCI = props => {
               <span>Job Seeker Capacity Instrument (JSCI)</span>
             </h1>
             <Formik
-              initialValues={{
-                // WORK_TWOYEARS: "Paid work"
-              }}
+              enableReinitialize
+              initialValues={initValues}
               validationSchema={mySchema}
               onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
