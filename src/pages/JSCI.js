@@ -10,9 +10,9 @@ import BarChart from "../components/BarChart";
 import ActivityDetails from "./ActivityDetails";
 import Participants from "../components/Participants";
 import axios from 'axios';
-import { Formik, useField } from 'formik';
+import { Formik, Field, useField } from 'formik';
 import * as Yup from 'yup';
-import { MyTextField, MySelect } from '../components/FormFields';
+import { MyTextField, MySelect, RadioButton, RadioButtonGroup } from '../components/FormFields';
 const dtrum = window.dtrum;
 const $ = window.$;
 
@@ -21,7 +21,10 @@ const $ = window.$;
 
 const mySchema = Yup.object().shape({
   WORK_TWOYEARS: Yup.string().required('Required'),
-  password: Yup.string().required('Required')
+  WORK_HAVEYOUDONE: Yup.string().when('WORK_TWOYEARS', {
+    is: "Paid work",
+    then: Yup.string().required('Required')
+  })
 });
 
 console.log(mySchema);
@@ -60,6 +63,23 @@ const JSCI = props => {
       </Drawer>
       <ContainerFluid>
         <div className="row">
+          <div className="col-3">
+            <nav id="navbar-example3" className="navbar navbar-light bg-light" style={{ position: "sticky", top: "0" }}>
+              <nav className="nav nav-pills flex-column">
+                <a className="nav-link" href="#item-1">Item 1</a>
+                <nav className="nav nav-pills flex-column">
+                  <a className="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+                  <a className="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+                </nav>
+                <a className="nav-link" href="#item-2">Item2</a>
+                <a className="nav-link" href="#item-3">Item3</a>
+                <nav className="nav nav-pills flex-column">
+                  <a className="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
+                  <a className="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
+                </nav>
+              </nav>
+            </nav>
+          </div>
           <div className="col-8">
             <h1 className="h2 d-flex justify-content-between align-items-center mb-2">
               <span>Job Seeker Capacity Instrument (JSCI)</span>
@@ -68,6 +88,8 @@ const JSCI = props => {
               enableReinitialize
               initialValues={initValues}
               validationSchema={mySchema}
+              validateOnChange={false}
+              validateOnBlur={false}
               onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
                   alert("Yo " + JSON.stringify(values, null, 2));
@@ -104,10 +126,37 @@ const JSCI = props => {
                         ]
                       }
                     />
-                    <MyTextField
+
+                    {values.WORK_TWOYEARS && values.WORK_TWOYEARS === "Paid work" ?
+
+                      <RadioButtonGroup
+                        id="WORK_HAVEYOUDONE_Group"
+                        label="Have you done any paid work (in Australia or overseas) in the last 2 years"
+                        value={values.WORK_HAVEYOUDONE}
+                        error={errors.WORK_HAVEYOUDONE}
+                        touched={touched.WORK_HAVEYOUDONE}
+                        isSubmitting={isSubmitting}
+                      >
+                        <Field
+                          component={RadioButton}
+                          name="WORK_HAVEYOUDONE"
+                          id="Yes"
+                          label="Yes"
+                        />
+                        <Field
+                          component={RadioButton}
+                          name="WORK_HAVEYOUDONE"
+                          id="No"
+                          label="No"
+                        />
+                      </RadioButtonGroup> : null}
+
+
+
+                    {/* <MyTextField
                       name="password"
                       label="password"
-                    />
+                    /> */}
                     <button type="submit" disabled={isSubmitting}>
                       Submit
           </button>
@@ -117,41 +166,10 @@ const JSCI = props => {
                 )}
             </Formik>
 
-            <div>
-              <h4 id="item-1">Item 1</h4>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-              <h5 id="item-1-1">Item 1-1</h5>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-              <h5 id="item-1-2">Item 2-2</h5>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-              <h4 id="item-2">Item 2</h4>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-              <h4 id="item-3">Item 3</h4>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-              <h5 id="item-3-1">Item 3-1</h5>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-              <h5 id="item-3-2">Item 3-2</h5>
-              <p>Sed vehicula ullamcorper lorem donec suspendisse laoreet diam at nec feugiat est leo diam accumsan nullam quisque commodo nisl sem sem.Pulvinar condimentum urna nam a pharetra a mus fringilla elementum placerat elit praesent eu a ridiculus orci sapien a consectetur interdum class suspendisse at himenaeos netus.Montes arcu vestibulum suspendisse parturient in cum id semper donec eget.</p>
-            </div>
+
 
           </div>
-          <div className="col-4">
-            <nav id="navbar-example3" className="navbar navbar-light bg-light" style={{ position: "sticky", top: "0" }}>
-              <nav className="nav nav-pills flex-column">
-                <a className="nav-link" href="#item-1">Item 1</a>
-                <nav className="nav nav-pills flex-column">
-                  <a className="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
-                  <a className="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
-                </nav>
-                <a className="nav-link" href="#item-2">Item2</a>
-                <a className="nav-link" href="#item-3">Item3</a>
-                <nav className="nav nav-pills flex-column">
-                  <a className="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
-                  <a className="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
-                </nav>
-              </nav>
-            </nav>
-          </div>
+
         </div>
       </ContainerFluid>
     </>
