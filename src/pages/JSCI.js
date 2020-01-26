@@ -27,7 +27,7 @@ const mySchema = Yup.object().shape({
   })
 });
 
-console.log(mySchema);
+
 
 const JSCI = props => {
   const [showDrawer, setShowDrawer] = useState(false);
@@ -103,7 +103,9 @@ const JSCI = props => {
                 handleSubmit,
                 isSubmitting,
                 errors,
-                touched
+                touched,
+                setValues,
+                setFieldValue
                 /* and other goodies */
               }) => (
                   <form onSubmit={handleSubmit}>
@@ -125,6 +127,13 @@ const JSCI = props => {
                           { label: "NOT working and NOT looking for work", value: "NOT working and NOT looking for work" }
                         ]
                       }
+                      child={{
+                        field: "WORK_HAVEYOUDONE",
+                        parentValue: "Paid work",
+                        reset: () => {
+                          setFieldValue("WORK_HAVEYOUDONE", undefined)
+                        }
+                      }}
                     />
 
                     {values.WORK_TWOYEARS && values.WORK_TWOYEARS === "Paid work" ?

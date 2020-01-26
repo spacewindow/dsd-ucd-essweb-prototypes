@@ -23,6 +23,7 @@ export const MySelect = ({ label, ...props }) => {
 
     const { setValue } = helpers;
     // console.log("META", meta)
+    console.log("CHILDFIELD", props.setValues);
     return (
         <div className="form-group">
             <label htmlFor={props.name}>
@@ -34,8 +35,11 @@ export const MySelect = ({ label, ...props }) => {
                 name={field.name}
                 value={props.options ? props.options.find(option => option.value === field.value) : ""}
                 onChange={(option) => {
-                    console.log(field.name, field.value, option);
+                    // console.log(field.name, field.value, option);
                     setValue(option.value)
+                    if (props.child && option.value !== props.child.parentValue) {
+                        props.child.reset()
+                    }
                 }}
                 onBlur={field.onBlur}
             />
@@ -102,7 +106,7 @@ export const RadioButtonGroup = ({
     return (
         <div className={classes}>
             <fieldset>
-                <legend>{label}</legend>
+                <label>{label}</label>
                 {children}
                 {error && <InputFeedback error={error} />}
             </fieldset>
