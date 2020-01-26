@@ -12,7 +12,7 @@ import Participants from "../components/Participants";
 import axios from 'axios';
 import { Formik, Field, useField } from 'formik';
 import * as Yup from 'yup';
-import { MyTextField, MySelect, RadioButton, RadioButtonGroup } from '../components/FormFields';
+import { TextField, Select, RadioButton, RadioButtonGroup } from '../components/FormFields';
 const dtrum = window.dtrum;
 const $ = window.$;
 
@@ -20,8 +20,8 @@ const $ = window.$;
 // console.log(Yup);
 
 const mySchema = Yup.object().shape({
-  WORK_TWOYEARS: Yup.string().required('Required'),
-  WORK_HAVEYOUDONE: Yup.string().when('WORK_TWOYEARS', {
+  workExp1_1_recent: Yup.string().required('Required'),
+  workExp2_1_paid: Yup.string().when('workExp1_1_recent', {
     is: "Paid work",
     then: Yup.string().required('Required')
   })
@@ -89,7 +89,7 @@ const JSCI = props => {
               initialValues={initValues}
               validationSchema={mySchema}
               validateOnChange={false}
-              validateOnBlur={false}
+              validateOnBlur={true}
               onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
                   alert("Yo " + JSON.stringify(values, null, 2));
@@ -109,9 +109,9 @@ const JSCI = props => {
                 /* and other goodies */
               }) => (
                   <form onSubmit={handleSubmit}>
-                    <MySelect
+                    <Select
                       label="What have you MOSTLY been doing in the LAST TWO YEARS?"
-                      name="WORK_TWOYEARS"
+                      name="workExp1_1_recent"
                       options={
                         [
                           { label: "Select a response...", value: "" },
@@ -127,45 +127,32 @@ const JSCI = props => {
                           { label: "NOT working and NOT looking for work", value: "NOT working and NOT looking for work" }
                         ]
                       }
-                      child={{
-                        field: "WORK_HAVEYOUDONE",
-                        parentValue: "Paid work",
-                        reset: () => {
-                          setFieldValue("WORK_HAVEYOUDONE", undefined)
-                        }
-                      }}
                     />
 
-                    {values.WORK_TWOYEARS && values.WORK_TWOYEARS === "Paid work" ?
-
-                      <RadioButtonGroup
-                        id="WORK_HAVEYOUDONE_Group"
-                        label="Have you done any paid work (in Australia or overseas) in the last 2 years"
-                        value={values.WORK_HAVEYOUDONE}
-                        error={errors.WORK_HAVEYOUDONE}
-                        touched={touched.WORK_HAVEYOUDONE}
-                        isSubmitting={isSubmitting}
-                      >
-                        <Field
-                          component={RadioButton}
-                          name="WORK_HAVEYOUDONE"
-                          id="Yes"
-                          label="Yes"
-                        />
-                        <Field
-                          component={RadioButton}
-                          name="WORK_HAVEYOUDONE"
-                          id="No"
-                          label="No"
-                        />
-                      </RadioButtonGroup> : null}
-
+                    <RadioButtonGroup
+                      name="workExp2_1_paid"
+                      label="Have you done any paid work (in Australia or overseas) in the last 2 years"
+                      parent={{
+                        field: "workExp1_1_recent",
+                        currentValue: values["workExp1_1_recent"],
+                        triggerValue: "Paid work"
+                      }}
+                    >
+                      <RadioButton
+                        name="workExp2_1_paid"
+                        id="Yes"
+                        label="Yes"
+                        value="Yes"
+                      />
+                      <RadioButton
+                        name="workExp2_1_paid"
+                        id="No"
+                        label="No"
+                        value="No"
+                      />
+                    </RadioButtonGroup>
 
 
-                    {/* <MyTextField
-                      name="password"
-                      label="password"
-                    /> */}
                     <button type="submit" disabled={isSubmitting}>
                       Submit
           </button>

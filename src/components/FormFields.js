@@ -1,12 +1,13 @@
 import React from 'react';
 import { useField } from 'formik';
-import Select from 'react-select';
+import ReactSelect from 'react-select';
 import classNames from 'classnames';
 
-export const MyTextField = ({ label, ...props }) => {
+export const TextField = ({ label, ...props }) => {
     const [field, meta, helpers] = useField(props);
     return (
-        <div className="form-group">
+
+        <div className={meta.error ? "form-group form-group-error" : "form-group"}>
             <label htmlFor={props.name}>
                 {label}
             </label>
@@ -18,25 +19,20 @@ export const MyTextField = ({ label, ...props }) => {
     );
 };
 
-export const MySelect = ({ label, ...props }) => {
+export const Select = props => {
     const [field, meta, helpers] = useField(props);
-
-    const { setValue } = helpers;
-    // console.log("META", meta)
-    console.log("CHILDFIELD", props.setValues);
     return (
-        <div className="form-group">
+        <div className={meta.error ? "form-group form-group-error" : "form-group"}>
             <label htmlFor={props.name}>
-                {label}
+                {props.label}
             </label>
-            <Select
+            <ReactSelect
                 inputId={props.name} // for label htmlFor reference
                 options={props.options}
                 name={field.name}
                 value={props.options ? props.options.find(option => option.value === field.value) : ""}
                 onChange={(option) => {
-                    // console.log(field.name, field.value, option);
-                    setValue(option.value)
+                    helpers.setValue(option.value)
                     if (props.child && option.value !== props.child.parentValue) {
                         props.child.reset()
                     }
@@ -52,32 +48,26 @@ export const MySelect = ({ label, ...props }) => {
 };
 
 // Input feedback
-const InputFeedback = ({ error }) =>
-    error ? <div className={classNames("input-feedback")}>{error}</div> : null;
+const InputFeedback = (props) =>
+    props.error ? <div className={classNames("input-feedback")}>{props.error}</div> : null;
 
 
 // Radio input
-export const RadioButton = ({
-    field: { name, value, onChange, onBlur },
-    id,
-    label,
-    className,
-    ...props
-}) => {
+export const RadioButton = props => {
+    const [field, meta, helpers] = useField(props);
     return (
         <div>
             <input
-                name={name}
-                id={id}
                 type="radio"
-                value={id} // could be something else for output?
-                checked={id === value}
-                onChange={onChange}
-                onBlur={onBlur}
-                className={classNames("radio-button")}
-                {...props}
+                name={field.name}
+                id={props.id}
+                value={props.value}
+                checked={field.checked}
+                onChange={() => {
+                    helpers.setValue(props.id)
+                }}
             />
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={props.id}>{props.label}</label>
         </div>
     );
 };
@@ -85,31 +75,21 @@ export const RadioButton = ({
 
 
 // Radio group
-export const RadioButtonGroup = ({
-    value,
-    error,
-    touched,
-    id,
-    label,
-    className,
-    children
-}) => {
-    const classes = classNames(
-        "input-field",
-        {
-            "is-success": value || (!error && touched), // handle prefilled or user-filled
-            "is-error": !!error && touched
-        },
-        className
-    );
-
-    return (
-        <div className={classes}>
+export const RadioButtonGroup = props => {
+    const [field, meta, helpers] = useField(props);
+    let element = (
+        <div className={meta.error ? "form-group form-group-error" : "form-group"}>
             <fieldset>
-                <label>{label}</label>
-                {children}
-                {error && <InputFeedback error={error} />}
+                <label>{props.label}</label>
+                {props.children}
+                {meta.error && <InputFeedback error={meta.error} />}
             </fieldset>
         </div>
+    )
+    if (props.parent) {
+        element = props.parent.currentValue !== props.parent.triggerValue ? null : element
+    }
+    return (
+        element
     );
 };
