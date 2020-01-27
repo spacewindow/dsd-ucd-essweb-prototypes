@@ -26,11 +26,49 @@ export const Select = props => {
 
   let element = (
     <div className={meta.error ? "form-group form-group-error" : "form-group"}>
-      {meta.error && <InputFeedback error={meta.error} />}
       <label htmlFor={props.name}>{props.label}</label>
+      {meta.error && <InputFeedback error={meta.error} />}
       <ReactSelect
         inputId={field.name} // for label htmlFor reference
         options={options}
+        defaultValue={defaultValue}
+        name={field.name}
+        onChange={option => {
+          helpers.setValue(option.value);
+        }}
+        onBlur={field.onBlur}
+        key={field.name}
+      />
+    </div>
+  );
+
+  // render based on parent value
+  if (props.parent && props.parent.toggle === "render") {
+    var match = props.parent.toggleValues.filter(value => {
+      return value === props.parent.currentValue;
+    });
+
+    element = match.length > 0 ? element : null;
+  }
+  return element;
+};
+
+export const MultiSelect = props => {
+  const [field, meta, helpers] = useField(props);
+  const options = props.options.map(x => ({ label: x, value: x }));
+  const defaultValue = meta.initialValue
+    ? { label: meta.initialValue, value: meta.initialValue }
+    : null;
+  console.log("defaultValue", defaultValue);
+
+  let element = (
+    <div className={meta.error ? "form-group form-group-error" : "form-group"}>
+      <label htmlFor={props.name}>{props.label}</label>
+      {meta.error && <InputFeedback error={meta.error} />}
+      <ReactSelect
+        inputId={field.name} // for label htmlFor reference
+        options={options}
+        isMulti
         defaultValue={defaultValue}
         name={field.name}
         onChange={option => {
@@ -94,9 +132,9 @@ export const RadioButtonGroup = props => {
 
   let element = (
     <div className={meta.error ? "form-group form-group-error" : "form-group"}>
-      {meta.error && <InputFeedback error={meta.error} />}
       <fieldset>
         <label>{props.label}</label>
+        {meta.error && <InputFeedback error={meta.error} />}
         {props.options.map((o, i) => (
           <RadioButton name={props.name} id={o} label={o} key={"radio" + i} />
         ))}

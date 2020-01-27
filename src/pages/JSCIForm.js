@@ -85,7 +85,7 @@ const JSCIForm = props => {
             });
             return (
               <>
-                <h3 id={section.id}>{section.title}</h3>
+                <h4 id={section.id}>{section.title}</h4>
                 {questions}
               </>
             );
