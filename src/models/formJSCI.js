@@ -24,7 +24,7 @@ export const formJSCI = [
       "Parenting",
       "NOT working and NOT looking for work"
     ],
-    validation: Yup.string().required("Required")
+    validation: Yup.string().required("Please select an option below")
   },
   {
     name: "workExp2_1_paid",
@@ -48,7 +48,7 @@ export const formJSCI = [
         "NOT working and NOT looking for work"
       ]
     },
-    validation: Yup.string().required("Required")
+    validation: Yup.string().required("Please select an option below")
   },
   {
     name: "workExp2_2_paidHours",
@@ -65,6 +65,28 @@ export const formJSCI = [
       toggle: "render",
       toggleValues: ["Paid work"]
     },
-    validation: Yup.string().required("Required")
+    validation: Yup.string().required("Please select an option below")
+  },
+  {
+    name: "edu1_1_highest",
+    label: "What is the highest level of schooling you have COMPLETED?",
+    component: Select,
+    options: [
+      "Year 12/13",
+      "Year 11",
+      "Year 10",
+      "Completed primary school but less than Year 10",
+      "Primary school or less",
+      "Special school/support unit in school",
+      "Did not go to school]"
+    ],
+    validation: Yup.string().required("Please select an option below")
+  },
+  {
+    name: "edu2_1_quals",
+    label: "Have you COMPLETED any other qualification(s)? ",
+    component: RadioButtonGroup,
+    options: ["Yes", "No"],
+    validation: Yup.string().required("Please select an option below")
   }
 ];

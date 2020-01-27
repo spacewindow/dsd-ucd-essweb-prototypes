@@ -19,21 +19,26 @@ export const TextField = ({ label, ...props }) => {
 export const Select = props => {
   const [field, meta, helpers] = useField(props);
   const options = props.options.map(x => ({ label: x, value: x }));
+  const defaultValue = meta.initialValue
+    ? { label: meta.initialValue, value: meta.initialValue }
+    : null;
+  console.log("defaultValue", defaultValue);
 
   let element = (
     <div className={meta.error ? "form-group form-group-error" : "form-group"}>
+      {meta.error && <InputFeedback error={meta.error} />}
       <label htmlFor={props.name}>{props.label}</label>
       <ReactSelect
         inputId={field.name} // for label htmlFor reference
         options={options}
+        defaultValue={defaultValue}
         name={field.name}
         onChange={option => {
           helpers.setValue(option.value);
         }}
         onBlur={field.onBlur}
+        key={field.name}
       />
-
-      {meta.error ? <div className="error">{meta.error}</div> : null}
     </div>
   );
 
@@ -42,7 +47,6 @@ export const Select = props => {
     var match = props.parent.toggleValues.filter(value => {
       return value === props.parent.currentValue;
     });
-    console.log(props.name + " match", match);
 
     element = match.length > 0 ? element : null;
   }
@@ -51,9 +55,7 @@ export const Select = props => {
 
 // Input feedback
 const InputFeedback = props =>
-  props.error ? (
-    <div className={classNames("input-feedback")}>{props.error}</div>
-  ) : null;
+  props.error ? <div style={{ color: "red" }}>{props.error}</div> : null;
 
 // Radio input
 export const RadioButton = props => {
@@ -78,6 +80,7 @@ export const RadioButton = props => {
 // Radio group
 export const RadioButtonGroup = props => {
   const [field, meta, helpers] = useField(props);
+  const parentValue = props.parent ? props.parent.currentValue : undefined;
 
   useEffect(() => {
     // wipes the value on the component if parent changes value
@@ -87,16 +90,16 @@ export const RadioButtonGroup = props => {
     ) {
       helpers.setValue(undefined);
     }
-  }, [props.parent.currentValue]); // currentValue dependency critical to avoid infinite loop
+  }, [parentValue]); // currentValue dependency critical to avoid infinite loop
 
   let element = (
     <div className={meta.error ? "form-group form-group-error" : "form-group"}>
+      {meta.error && <InputFeedback error={meta.error} />}
       <fieldset>
         <label>{props.label}</label>
         {props.options.map((o, i) => (
           <RadioButton name={props.name} id={o} label={o} key={"radio" + i} />
         ))}
-        {meta.error && <InputFeedback error={meta.error} />}
       </fieldset>
     </div>
   );
@@ -105,7 +108,6 @@ export const RadioButtonGroup = props => {
     var match = props.parent.toggleValues.filter(value => {
       return value === props.parent.currentValue;
     });
-    console.log(props.name + " match", match);
 
     element = match.length > 0 ? element : null;
   }

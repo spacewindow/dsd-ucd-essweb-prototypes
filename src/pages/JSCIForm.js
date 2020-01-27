@@ -11,7 +11,7 @@ const valSchema = (() => {
     if (q.parent) {
       validation[q.name] = Yup.string().when(q.parent.name, {
         is: val => q.parent.toggleValues.includes(val),
-        then: Yup.string().required("Required")
+        then: q.validation
       });
     }
   });
@@ -25,17 +25,22 @@ const JSCIForm = props => {
     const initValues = axios
       .get("http://localhost:4000/jsci")
       .then(response => {
+        // setTimeout(() => {
         setInitValues(response.data.values);
+        // }, 1000);
       });
   }, []);
+
+  console.log("initValues", initValues);
 
   return (
     <Formik
       enableReinitialize
       initialValues={initValues}
       validationSchema={valSchema}
-      validateOnChange={false}
-      validateOnBlur={true}
+      // validateOnMount={false}
+      // validateOnChange={false}
+      // validateOnBlur={false}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           alert("Yo " + JSON.stringify(values, null, 2));
