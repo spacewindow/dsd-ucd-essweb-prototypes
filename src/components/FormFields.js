@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useField } from 'formik';
 import ReactSelect from 'react-select';
 import classNames from 'classnames';
@@ -21,28 +21,25 @@ export const TextField = ({ label, ...props }) => {
 
 export const Select = props => {
     const [field, meta, helpers] = useField(props);
+    const options = props.options.map(x => ({ label: x, value: x }));
     return (
         <div className={meta.error ? "form-group form-group-error" : "form-group"}>
             <label htmlFor={props.name}>
                 {props.label}
             </label>
             <ReactSelect
-                inputId={props.name} // for label htmlFor reference
-                options={props.options}
+                inputId={field.name} // for label htmlFor reference
+                options={options}
                 name={field.name}
-                value={props.options ? props.options.find(option => option.value === field.value) : ""}
                 onChange={(option) => {
                     helpers.setValue(option.value)
-                    if (props.child && option.value !== props.child.parentValue) {
-                        props.child.reset()
-                    }
                 }}
                 onBlur={field.onBlur}
             />
 
-            {meta.error ? (
+            {/* {meta.error ? (
                 <div className='error'>{meta.error}</div>
-            ) : null}
+            ) : null} */}
         </div>
     );
 };
@@ -77,17 +74,32 @@ export const RadioButton = props => {
 // Radio group
 export const RadioButtonGroup = props => {
     const [field, meta, helpers] = useField(props);
+
+    useEffect(() => { // wipes the value on the component if parent changes value
+        if (props.parent.currentValue !== props.parent.toggleValue) {
+            helpers.setValue(undefined);
+        }
+    }, [props.parent.currentValue]) // currentValue dependency critical to avoid infinite loop
+
     let element = (
         <div className={meta.error ? "form-group form-group-error" : "form-group"}>
             <fieldset>
                 <label>{props.label}</label>
-                {props.children}
+                {props.options.map((o, i) => (
+                    <RadioButton
+                        name={props.name}
+                        id={o}
+                        label={o}
+                        key={"radio" + i}
+                    />
+                ))}
                 {meta.error && <InputFeedback error={meta.error} />}
             </fieldset>
         </div>
     )
-    if (props.parent) {
-        element = props.parent.currentValue !== props.parent.triggerValue ? null : element
+    // render based on parent value
+    if (props.parent.toggle === "render") {
+        element = props.parent.currentValue !== props.parent.toggleValue ? null : element
     }
     return (
         element

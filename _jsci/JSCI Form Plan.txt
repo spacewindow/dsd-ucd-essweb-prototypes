@@ -1,6 +1,6 @@
 Work Experience
 
-# workExp1.1_recent
+# workExp1_1_recent
 What have you MOSTLY been doing in the LAST TWO YEARS? [Select] [Paid work
 Working while in prison or other detention
 Unpaid work (includes volunteering)
@@ -13,11 +13,11 @@ Parenting
 NOT working and NOT looking for work]
 
 	"Any response"
-        # workExp2.1_paid
+        # workExp2_1_paid
 		Have you done any paid work in the LAST TWO YEARS? [Radio Yes No]
 
 	"Paid Work"
-        # workExp2.2_paidHours
+        # workExp2_2_paidHours
 		In you riots recent job, how many paid hours did you mostly work per week?[Radio Yes No]
 
 
@@ -27,7 +27,7 @@ NOT working and NOT looking for work]
 Education
 
 
-# edu1.1_highest
+# edu1_1_highest
 What is the highest level of schooling you have COMPLETED? [Select] [Year 12/13
 Year 11
 Year 10
@@ -36,15 +36,15 @@ Primary school or less
 Special school/support unit in school
 Did not go to school]
 
-# edu2.1_quals
+# edu2_1_quals
 Have you COMPLETED any other qualification(s)? [Radio Yes No]
 
 	"Yes"
-        # edu3.1_qualsCompleted
+        # edu3_1_qualsCompleted
 		Which of these have you completed [MultiSelect][Doctoral Degree
 Masters Degree
 Vocational Graduate Diploma or Graduate Diploma
-Vocational Graduate Cert. or Graduate Cert.
+Vocational Graduate Cert_ or Graduate Cert_
 Bachelor Degree
 Diploma, Advanced Diploma or Associate Degree
 Tradesperson's qualification
@@ -53,12 +53,12 @@ Course run by private or community organisation
 Other non-trade VET Certificate II
 Other non-trade VET Certificates III or IV]
 
-        # edu3.2_qualsWork
+        # edu3_2_qualsWork
 		Do you think any of these could be work-related? [Radio Yes No]
 
 		"No"
 
-            # edu4.1_qualsStop
+            # edu4_1_qualsStop
 			What stops you from using your qualifications [Select] [Disability or health related reasons
 Low English language proficiency
 Qualification(s) suspended/terminated
@@ -70,28 +70,28 @@ Qualification(s) outdated or irrelevant]
 
 Work Capacity
 
-#capacity1.1_hours
+#capacity1_1_hours
 Do you have any disabilities or medical conditions that affect the HOURS you are able to work? [Select] [Yes
 No
 Not sure/don't know
 Do not wish to answer]
 
 	"Yes"
-    #capacity2.1_hours
+    #capacity2_1_hours
 		What is the most number of hours a week you think you are able to work? [Select] [30 hours or more
 15-29 hours
 Less than 15 hours]
 
-#capacity3.1_type
+#capacity3_1_type
 Do you have any disabilities or medical conditions that affect the TYPE OF WORK you can do? [Yes
 No
 Not sure/don't know
 Do not wish to answer]
 	"Yes"
-        #capacity4.1_support
+        #capacity4_1_support
 		Do you think you need additional support to help you at work as a result of your conditions? [Select]
 
-        #capacity4.2_length
+        #capacity4_2_length
 		How long will your conditions effect your ability to work? [Select]
 
 Work Capacity 30+ hours or not assesses
@@ -99,11 +99,11 @@ Work Capacity 30+ hours or not assesses
 
 Transport
 
-#transport1.1_license
+#transport1_1_license
 
 Do you have a valid driver's license? [Radio Yes No]
 	"No"
-		#transport2.1_use
+		#transport2_1_use
 		What can you use to travel to and from work? [Select] [Own non-motorised transport (eg bicycle)
 Other private transport (eg friend's car)
 Public transport (eg bus or train)
@@ -111,21 +111,21 @@ Taxi
 Other motorised transport
 No transport (except walking)]
 
-#transport3.1_own
+#transport3_1_own
 Do you have your own car or motorcycle that you can use to travel to and from work? [Radio Yes No]
 
 Personal Factors
 
-#personal1.1_guardian
+#personal1_1_guardian
 
-Does the following sentence apply to you? At least one of my parents or legal guardians was regularly in paid employment when I was in my early teens. [Radio Yes No]
+Does the following sentence apply to you? At least one of my parents or legal guardians was regularly in paid employment when I was in my early teens_ [Radio Yes No]
 
-#peronal2.1_other
+#peronal2_1_other
 
 Are there any other factors which you think might affect your ability to work, obtain work or look for work that we haven't already discussed? [Radio Yes No]
 
 	"Yes"
-	#personal3.1_factors
+	#personal3_1_factors
 	Please specify the factors [Select] [Anger issues/temper/violence
 Caring responsibilities
 Criminal court action pending/bail/remand
