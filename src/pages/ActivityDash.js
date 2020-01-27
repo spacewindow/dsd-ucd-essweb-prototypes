@@ -9,7 +9,7 @@ import Drawer from "../components/Drawer";
 import BarChart from "../components/BarChart";
 import ActivityDetails from "./ActivityDetails";
 import Participants from "../components/Participants";
-const dtrum = window.dtrum;
+// const dtrum = window.dtrum;
 const $ = window.$;
 
 const ActivityDash = props => {
@@ -18,8 +18,8 @@ const ActivityDash = props => {
   const drawerClick = () => {
     console.log("showDrawer", showDrawer);
     setShowDrawer(!showDrawer);
-    var action = dtrum.enterAction("Drawer Click", "click", null, "info");
-    dtrum.leaveAction(action);
+    // var action = dtrum.enterAction("Drawer Click", "click", null, "info");
+    // dtrum.leaveAction(action);
   };
 
   return (

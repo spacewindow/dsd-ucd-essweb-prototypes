@@ -9,6 +9,7 @@ import {
 const Yup = require("yup");
 
 export const formJSCI = {
+  title: "JSCI",
   state: "draft",
   sections: [
     {
@@ -189,12 +190,80 @@ export const formJSCI = {
     {
       title: "Transport",
       id: "transport",
-      questions: []
+      questions: [
+        {
+          name: "transport1_1_license",
+          label: "Do you have a valid driver's license?",
+          component: RadioButtonGroup,
+          options: ["Yes", "No"],
+          validation: Yup.string().required("Please select an option below")
+        },
+        {
+          name: "transport3_1_own",
+          label:
+            "Do you have your own car or motorcycle that you can use to travel to and from work?",
+          component: RadioButtonGroup,
+          options: ["Yes", "No"],
+          validation: Yup.string().required("Please select an option below")
+        }
+      ]
     },
     {
       title: "Personal Factors",
       id: "personalFactors",
-      questions: []
+      questions: [
+        {
+          name: "personal1_1_guardian",
+          label:
+            "Does the following sentence apply to you? At least one of my parents or legal guardians was regularly in paid employment when I was in my early teens",
+          component: RadioButtonGroup,
+          options: ["Yes", "No"],
+          validation: Yup.string().required("Please select an option below")
+        },
+        {
+          name: "personal2_1_other",
+          label:
+            "Are there any other factors which you think might affect your ability to work, obtain work or look for work that we haven't already discussed?",
+          component: RadioButtonGroup,
+          options: ["Yes", "No"],
+          validation: Yup.string().required("Please select an option below")
+        },
+        {
+          name: "personal3_1_factors",
+          label: "Please specify the factors below",
+          component: MultiSelect,
+          options: [
+            "Anger issues/temper/violence",
+            "Caring responsibilities",
+            "Criminal court action pending/bail/remand",
+            "Dental Issues",
+            "Domestic violence",
+            "Drug treatment program (eg methadone)",
+            "Family grief/trauma",
+            "Gambling addiction",
+            "Numeracy issues",
+            "Pregnancy",
+            "Relationship breakdown",
+            "Risk of homelessness",
+            "Self esteem/motivation/presentation issues",
+            "Severe stress",
+            "Sleep problems/insomnia"
+          ],
+          parent: {
+            name: "personal2_1_other",
+            toggle: "render",
+            toggleValues: ["Yes"]
+          },
+          validation: Yup.string() /* Yup.array()
+            .max(1, "Pick at least 3 tags")
+            .of(
+              Yup.object().shape({
+                label: Yup.string().required(),
+                value: Yup.string().required()
+              })
+            ) */
+        }
+      ]
     }
   ]
 };

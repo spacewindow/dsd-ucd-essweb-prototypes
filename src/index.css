@@ -38,6 +38,7 @@ input[type="checkbox"] + label:before {
   content: "";
   display: inline-block;
   border: 2px solid #a6a6a6;
+  border-radius: 50%;
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -61,4 +62,18 @@ input[type="checkbox"]:checked + label:before {
 .form-group-error {
   padding-left: 1rem;
   border-left: 0.2rem solid red;
+}
+
+h4 {
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav-masthead .nav-link {
+  font-size: 1.3rem;
+  margin: 0rem 1rem;
+}
+
+.react-bootstrap-table th[data-row-selection] {
+  width: 2.6rem !important;
 }

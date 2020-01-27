@@ -69,6 +69,7 @@ export const MultiSelect = props => {
         inputId={field.name} // for label htmlFor reference
         options={options}
         isMulti
+        closeMenuOnSelect={false}
         defaultValue={defaultValue}
         name={field.name}
         onChange={option => {

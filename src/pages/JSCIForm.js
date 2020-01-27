@@ -51,8 +51,11 @@ const JSCIForm = props => {
       // validateOnBlur={false}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          alert("Yo " + JSON.stringify(values, null, 2));
-          // axios.post('http://localhost:4000/users/', values);
+          axios.get("http://localhost:4000/jsci/").then(res => {
+            const json = res.data;
+            json.values = values;
+            axios.post("http://localhost:4000/jsci", json);
+          });
         }, 400);
       }}
     >
@@ -84,10 +87,10 @@ const JSCIForm = props => {
               );
             });
             return (
-              <>
+              <div key={"sectionKey" + index}>
                 <h4 id={section.id}>{section.title}</h4>
                 {questions}
-              </>
+              </div>
             );
           })}
 
@@ -98,8 +101,8 @@ const JSCIForm = props => {
           >
             Submit
           </button>
-          <pre>{JSON.stringify(values, null, 2)}</pre>
-          <pre>{JSON.stringify(errors, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(values, null, 2)}</pre>
+          <pre>{JSON.stringify(errors, null, 2)}</pre> */}
         </form>
       )}
     </Formik>

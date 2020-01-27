@@ -23,18 +23,11 @@ import {
 const dtrum = window.dtrum;
 const $ = window.$;
 
-const { sections } = formJSCI;
+const { sections, title: formTitle } = formJSCI;
 
 const JSCI = props => {
   const [showDrawer, setShowDrawer] = useState(false);
   $("body").scrollspy({ target: "#jsciNav" });
-
-  const drawerClick = () => {
-    console.log("showDrawer", showDrawer);
-    setShowDrawer(!showDrawer);
-    var action = dtrum.enterAction("Drawer Click", "click", null, "info");
-    dtrum.leaveAction(action);
-  };
 
   return (
     <>
@@ -44,11 +37,6 @@ const JSCI = props => {
         <PickerPill type="Site" name="TL45" />
         <PickerPill type="Contract" name="DES" />
       </Picker>
-      <Drawer
-        show={showDrawer}
-        closeFunction={drawerClick}
-        header="Skills for Work | Details"
-      ></Drawer>
       <ContainerFluid>
         <div className="row">
           <div className="col-3">
@@ -58,8 +46,13 @@ const JSCI = props => {
               style={{ position: "sticky", top: "0" }}
             >
               <nav className="nav nav-pills flex-column">
+                <h5 style={{ paddingLeft: "1rem" }}>{formTitle}</h5>
                 {sections.map((section, index) => (
-                  <a className="nav-link" href={"#" + section.id}>
+                  <a
+                    className="nav-link"
+                    href={"#" + section.id}
+                    key={"key" + index}
+                  >
                     {section.title}
                   </a>
                 ))}

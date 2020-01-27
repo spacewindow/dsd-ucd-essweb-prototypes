@@ -50,14 +50,38 @@ const ContainerFluid = props => {
               <a className="bd-toc-link" href="#">
                 Home
               </a>
-              {/* <ul className="nav bd-sidenav">
+              <ul className="nav bd-sidenav">
                 <li>
                   <a href="#">Dashboard</a>
                 </li>
                 <li>
                   <a href="#">Caseload</a>
                 </li>
-              </ul> */}
+              </ul>
+            </div>
+            <div className="bd-toc-item active">
+              <a className="bd-toc-link" href="#">
+                Job Seekers
+              </a>
+              <ul className="nav bd-sidenav">
+                <li>
+                  <a href="#">Case Summary</a>
+                </li>
+                <li>
+                  <a href="#">Calendar</a>
+                </li>
+                <li>
+                  <a href="/jsci" className="active">
+                    JSCI
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Capability Management</a>
+                </li>
+                <li>
+                  <a href="#">Compliance</a>
+                </li>
+              </ul>
             </div>
             <div className="bd-toc-item active">
               <a className="bd-toc-link" href="#">
@@ -65,8 +89,8 @@ const ContainerFluid = props => {
               </a>
 
               <ul className="nav bd-sidenav">
-                <li className="active">
-                  <a href="#">Summary</a>
+                <li>
+                  <a href="/activity">Summary</a>
                 </li>
                 <li>
                   <a href="#">Create</a>

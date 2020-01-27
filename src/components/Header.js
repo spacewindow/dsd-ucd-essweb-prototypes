@@ -29,20 +29,20 @@ const Header = props => {
         </div>
         <div className="d-flex align-items-center">
           <nav className="nav nav-masthead justify-content-center mr-4 pr-4 border-right">
-            <a className="nav-link" title="Search" href="/">
-              <i className="ms-Icon ms-Icon--Inbox"></i>
-              <span className="sr-only">Search</span>
+            <a className="nav-link" title="Updates" href="/">
+              <i className="ms-Icon ms-Icon--Megaphone"></i>
+              <span className="sr-only">Updates</span>
+            </a>
+            <a className="nav-link" title="Noticeboard" href="/">
+              <i className="ms-Icon ms-Icon--PageList"></i>
+              <span className="sr-only">Noticeboard</span>
+            </a>
+            <a className="nav-link" title="Messages" href="/">
+              <i className="ms-Icon ms-Icon--Mail"></i>
+              <span className="sr-only">Messages</span>
             </a>
             <a className="nav-link" title="Search" href="/">
-              <i className="ms-Icon ms-Icon--Inbox"></i>
-              <span className="sr-only">Search</span>
-            </a>
-            <a className="nav-link" title="Search" href="/">
-              <i className="ms-Icon ms-Icon--Inbox"></i>
-              <span className="sr-only">Search</span>
-            </a>
-            <a className="nav-link" title="Search" href="/">
-              <i className="ms-Icon ms-Icon--Inbox"></i>
+              <i className="ms-Icon ms-Icon--Search"></i>
               <span className="sr-only">Search</span>
             </a>
           </nav>

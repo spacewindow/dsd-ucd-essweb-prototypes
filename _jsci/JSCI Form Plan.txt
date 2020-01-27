@@ -120,7 +120,7 @@ Personal Factors
 
 Does the following sentence apply to you? At least one of my parents or legal guardians was regularly in paid employment when I was in my early teens_ [Radio Yes No]
 
-#peronal2_1_other
+#personal2_1_other
 
 Are there any other factors which you think might affect your ability to work, obtain work or look for work that we haven't already discussed? [Radio Yes No]
 

@@ -13,8 +13,7 @@ function App() {
     <Switch>
       <Route path="/dash1" render={props => <Dashboard {...props} />} />
       <Route path="/dash2" render={props => <Dashboard2 {...props} />} />
-      <Route path="/jsci2" render={props => <JSCI2 {...props} />} />
-      <Route path="/jsci" render={props => <JSCI {...props} />} />
+      <Route path="/jsci" render={props => <JSCI2 {...props} />} />
       <Route path="/activity" render={props => <ActivityDash {...props} />} />
       <Route
         path="/participants"
