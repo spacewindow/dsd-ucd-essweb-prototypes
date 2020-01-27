@@ -18,7 +18,7 @@ NOT working and NOT looking for work]
 
 	"Paid Work"
         # workExp2_2_paidHours
-		In you riots recent job, how many paid hours did you mostly work per week?[Radio Yes No]
+		In your most recent job, how many paid hours did you mostly work per week?[Radio Yes No]
 
 
 

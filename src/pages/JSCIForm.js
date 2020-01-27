@@ -2,11 +2,19 @@ import React, { useState, useEffect, Component } from "react";
 import axios from "axios";
 import { Formik, Field, useField } from "formik";
 import * as Yup from "yup";
-import { formJSCI as Questions } from "../models/formJSCI";
+import { formJSCI } from "../models/formJSCI";
+
+const { sections } = formJSCI;
+
+const allQs = sections.reduce((all, section) => {
+  return all.concat(section.questions);
+}, []);
+
+console.log("allQs", allQs);
 
 const valSchema = (() => {
   var validation = {};
-  Questions.map(q => {
+  allQs.map(q => {
     validation[q.name] = q.validation;
     if (q.parent) {
       validation[q.name] = Yup.string().when(q.parent.name, {
@@ -59,24 +67,35 @@ const JSCIForm = props => {
         /* and other goodies */
       }) => (
         <form onSubmit={handleSubmit}>
-          {Questions.map((q, index) => {
-            // console.log("RENDERING", q.name);
+          {sections.map((section, index) => {
+            const questions = section.questions.map((q, index) => {
+              return (
+                <q.component
+                  name={q.name}
+                  label={q.label}
+                  options={q.options}
+                  key={"key" + index}
+                  parent={
+                    q.parent
+                      ? { currentValue: values[q.parent.name], ...q.parent }
+                      : null
+                  }
+                />
+              );
+            });
             return (
-              <q.component
-                name={q.name}
-                label={q.label}
-                options={q.options}
-                key={"key" + index}
-                parent={
-                  q.parent
-                    ? { currentValue: values[q.parent.name], ...q.parent }
-                    : null
-                }
-              />
+              <>
+                <h3 id={section.id}>{section.title}</h3>
+                {questions}
+              </>
             );
           })}
 
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="btn-primary btn"
+            type="submit"
+            disabled={isSubmitting}
+          >
             Submit
           </button>
           <pre>{JSON.stringify(values, null, 2)}</pre>

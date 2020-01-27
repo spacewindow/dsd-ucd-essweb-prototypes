@@ -9,19 +9,25 @@ import Drawer from "../components/Drawer";
 import BarChart from "../components/BarChart";
 import ActivityDetails from "./ActivityDetails";
 import Participants from "../components/Participants";
-import axios from 'axios';
-import { Formik, Field, useField } from 'formik';
-import * as Yup from 'yup';
-import JSCIForm from './JSCIForm';
-import { TextField, Select, RadioButton, RadioButtonGroup } from '../components/FormFields';
+import axios from "axios";
+import { Formik, Field, useField } from "formik";
+import * as Yup from "yup";
+import JSCIForm from "./JSCIForm";
+import { formJSCI } from "../models/formJSCI";
+import {
+  TextField,
+  Select,
+  RadioButton,
+  RadioButtonGroup
+} from "../components/FormFields";
 const dtrum = window.dtrum;
 const $ = window.$;
 
-
+const { sections } = formJSCI;
 
 const JSCI = props => {
   const [showDrawer, setShowDrawer] = useState(false);
-  // $('body').scrollspy({ target: '#navbar-example3' })
+  $("body").scrollspy({ target: "#jsciNav" });
 
   const drawerClick = () => {
     console.log("showDrawer", showDrawer);
@@ -42,24 +48,21 @@ const JSCI = props => {
         show={showDrawer}
         closeFunction={drawerClick}
         header="Skills for Work | Details"
-      >
-      </Drawer>
+      ></Drawer>
       <ContainerFluid>
         <div className="row">
           <div className="col-3">
-            <nav id="navbar-example3" className="navbar navbar-light bg-light" style={{ position: "sticky", top: "0" }}>
+            <nav
+              id="jsciNav"
+              className="navbar navbar-light bg-light"
+              style={{ position: "sticky", top: "0" }}
+            >
               <nav className="nav nav-pills flex-column">
-                <a className="nav-link" href="#item-1">Item 1</a>
-                <nav className="nav nav-pills flex-column">
-                  <a className="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
-                  <a className="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
-                </nav>
-                <a className="nav-link" href="#item-2">Item2</a>
-                <a className="nav-link" href="#item-3">Item3</a>
-                <nav className="nav nav-pills flex-column">
-                  <a className="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
-                  <a className="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
-                </nav>
+                {sections.map((section, index) => (
+                  <a className="nav-link" href={"#" + section.id}>
+                    {section.title}
+                  </a>
+                ))}
               </nav>
             </nav>
           </div>
@@ -68,9 +71,7 @@ const JSCI = props => {
               <span>Job Seeker Capacity Instrument (JSCI)</span>
             </h1>
             <JSCIForm />
-
           </div>
-
         </div>
       </ContainerFluid>
     </>
