@@ -7,7 +7,7 @@
     "axios": "^0.19.1",
     "csvtojson": "^2.0.10",
     "formik": "^2.1.2",
-    "highcharts": "^7.2.1",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^2.2.2",
     "mdbreact": "^4.22.1",
     "papaparse": "^5.1.0",
